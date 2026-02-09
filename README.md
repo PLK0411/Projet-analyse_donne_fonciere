@@ -1,159 +1,180 @@
-# 📊 Analyse de Données Foncières pour Investisseur Immobilier
 
-## 📋 Description du Projet
+README.md
+Projet-analyse_donne_fonciere-main
 
-Ce projet analyse les données foncières (DVF - Demandes de Valeurs Foncières) et les données de loyers pour les régions **Nouvelle-Aquitaine** et **Occitanie** afin d'identifier les meilleures opportunités d'investissement immobilier en termes de rentabilité.
 
-Le projet comprend 3 notebooks Jupyter qui doivent être exécutés **dans l'ordre** :
-
-| # | Notebook | Description |
-|---|----------|-------------|
-| 1 | `01_preparation_donnees.ipynb` | Chargement, nettoyage et fusion des données |
-| 2 | `02_exploration_analyses.ipynb` | Visualisations et analyses statistiques |
-| 3 | `03_application_investisseur.ipynb` | Recommandations pour investisseurs |
-
+# 📊 Analyse de Données Foncières pour Investisseurs
+> **Projet d'analyse de données immobilières** utilisant les données DVF (Demandes de Valeurs Foncières) et des prédictions de loyers pour identifier les meilleures opportunités d'investissement locatif en France.
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-green.svg)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange.svg)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)
 ---
-
-## 📁 Structure des Données Requises
-
-### 1. Données DVF (Mutations Immobilières)
-
-**Emplacement requis :** 
-- `Nouvelle-Aquitaine/` - pour les départements de Nouvelle-Aquitaine
-- `Occitanie/` - pour les départements d'Occitanie
-
-**Format des fichiers :** `mutations_dXX.csv` (où XX = numéro du département)
-
-**Colonnes requises dans les CSVs DVF :**
-
-| Colonne | Description | Type |
-|---------|-------------|------|
-| `idmutation` | Identifiant unique de la mutation | String |
-| `datemut` | Date de la mutation | Date |
-| `anneemut` | Année de la mutation | Integer |
-| `moismut` | Mois de la mutation | Integer |
-| `coddep` | Code du département | String/Category |
-| `l_codinsee` | Liste des codes INSEE des communes | String |
-| `valeurfonc` | Valeur foncière (prix de vente en €) | Float |
-| `sbati` | Surface bâtie en m² | Float |
-| `libtypbien` | Type de bien (MAISON, APPARTEMENT, etc.) | String/Category |
-| `vefa` | Indicateur VEFA (Vente en l'État Futur d'Achèvement) | Category |
-
-**📌 Où obtenir les données DVF ?**
-- Site officiel : [data.gouv.fr - DVF](https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres/)
-- Télécharger les fichiers pour les départements souhaités des régions Nouvelle-Aquitaine et Occitanie
-
+## 📋 Table des matières
+1. [Présentation du projet](#-présentation-du-projet)
+2. [Structure du projet](#-structure-du-projet)
+3. [Données utilisées](#-données-utilisées)
+4. [Méthodologie](#-méthodologie)
+5. [Résultats et analyses](#-résultats-et-analyses)
+6. [Installation et exécution](#-installation-et-exécution)
+7. [Prérequis](#-prérequis)
 ---
-
-### 2. Données de Loyers
-
-**Emplacement requis :** `Loyer/loyers_filtre_occitanie_nouvelle_aquitaine.csv`
-
-**Colonnes requises :**
-
-| Colonne | Description | Type |
-|---------|-------------|------|
-| `INSEE_C` | Code INSEE de la commune (5 chiffres) | String |
-| `DEP` | Code du département | String |
-| `REG` | Code de la région | Integer |
-| `LIBGEO` | Nom de la commune | String/Category |
-| `loypredm2` | Loyer prédit au m² (€/m²/mois) | Float |
-
-**📌 Où obtenir les données de loyers ?**
-- Observatoires des loyers locaux
-- [Clameur](https://www.clameur.fr/) (observatoire privé des loyers)
-
+## 🎯 Présentation du projet
+Ce projet analyse les transactions immobilières françaises pour aider les investisseurs à identifier les **communes les plus rentables** pour l'investissement locatif. 
+### Objectifs principaux :
+- 🏠 **Analyser les prix au m²** par département et commune
+- 💰 **Calculer la rentabilité brute** (loyer annuel / prix d'achat)
+- 📈 **Identifier les tendances** du marché immobilier (2019-2024)
+- 🗺️ **Visualiser géographiquement** les opportunités d'investissement
+- 🎯 **Recommander les meilleures communes** pour investir
 ---
-
-## 📸 Captures d'Écran à Fournir pour un Bon Rendu
-
-Pour avoir un CSV de qualité et un README complet, voici les captures d'écran recommandées lors de l'exécution des notebooks :
-
-### Notebook 01 - Préparation des Données
-
-| # | Capture d'écran | Description |
-|---|-----------------|-------------|
-| 1 | **Aperçu des loyers** | Première cellule montrant `loyers.head()` avec les colonnes INSEE_C, DEP, REG, LIBGEO, loypredm2 |
-| 2 | **Résumé du traitement** | Le tableau final montrant par département : rows_dvf_clean, rows_merge, communes_couvertes, prix_m2_moy, loyer_m2_moy, rentabilite_m2_moy |
-
-### Notebook 02 - Exploration et Analyses
-
-| # | Capture d'écran | Description |
-|---|-----------------|-------------|
-| 3 | **Statistiques descriptives** | Output de `communes_all.describe()` montrant les stats pour nb_ventes, prix_m2_moy, loyer_m2_moy, rentabilite_m2_moy |
-| 4 | **Histogramme prix au m²** | Graphique "Distribution des prix moyens au m² (communes)" |
-| 5 | **Histogramme loyers au m²** | Graphique "Distribution des loyers moyens au m² (communes)" |
-| 6 | **Histogramme rentabilité** | Graphique "Distribution des rentabilités brutes moyennes (%) (communes)" |
-| 7 | **Prix vs Loyers par département** | Graphique comparatif par département |
-| 8 | **Rentabilité par département** | Graphique bar "Rentabilité brute moyenne (%) par département" |
-
-### Notebook 03 - Application Investisseur
-
-| # | Capture d'écran | Description |
-|---|-----------------|-------------|
-| 9 | **Top 20 communes** | Tableau des 20 communes les plus intéressantes avec score_interet |
-| 10 | **Visualisations finales** | Graphiques de recommandation pour l'investisseur |
-
----
-
-## 🚀 Instructions d'Exécution
-
-```bash
-# 1. Installer les dépendances
-pip install pandas numpy matplotlib
-
-# 2. Placer les données dans les dossiers appropriés
-#    - Nouvelle-Aquitaine/*.csv
-#    - Occitanie/*.csv  
-#    - Loyer/loyers_filtre_occitanie_nouvelle_aquitaine.csv
-
-# 3. Exécuter les notebooks dans l'ordre
-jupyter notebook 01_preparation_donnees.ipynb
-jupyter notebook 02_exploration_analyses.ipynb
-jupyter notebook 03_application_investisseur.ipynb
+## 📁 Structure du projet
 ```
-
+Projet-analyse_donne_fonciere-main/
+├── 📓 01_preparation_donnees.ipynb    # Nettoyage et préparation des données
+├── 📓 02_exploration_analyses.ipynb   # Exploration et visualisations
+├── 📓 03_application_investisseur.ipynb # Recommandations investisseur
+├── 📁 outputs/
+│   └── 📁 clean/                      # Données nettoyées (CSV)
+├── 📁 screenshots/                    # Captures d'écran des résultats
+└── 📄 README.md                       # Ce fichier
+```
 ---
-
-## 📊 Fichiers de Sortie (outputs/clean/)
-
-Après exécution du notebook 01, les fichiers suivants sont générés :
-
-| Type de fichier | Format | Description |
-|-----------------|--------|-------------|
-| `dvf_dep_XX.csv` | Par département | Données DVF nettoyées |
-| `fusion_dep_XX.csv` | Par département | DVF + Loyers fusionnés avec rentabilité |
-| `communes_dep_XX.csv` | Par département | Agrégation par commune |
-| `communes_all.csv` | **Fichier principal** | Toutes les communes avec nb_ventes, prix_m2_moy, loyer_m2_moy, rentabilite_m2_moy |
-
+## 📊 Données utilisées
+### Sources de données :
+| Source | Description |
+|--------|-------------|
+| **DVF (data.gouv.fr)** | Transactions immobilières 2019-2024 |
+| **Prédictions de loyers** | Estimations des loyers au m² par commune |
+| **Référentiel INSEE** | Noms et codes des communes françaises |
+### Variables clés :
+- `prix_m2` - Prix moyen au m² par commune
+- `loyer_m2_moy` - Loyer moyen estimé au m²
+- `rentabilite_m2_moy` - Rentabilité brute moyenne (%)
+- `nb_ventes` - Nombre de transactions (indicateur de fiabilité)
 ---
-
-## 📈 Métriques Calculées
-
-- **prix_m2** : Prix au m² = valeurfonc / sbati
-- **rentabilite_m2** : Rentabilité brute (%) = (loypredm2 × 12 × sbati / valeurfonc) × 100
-- **score_interet** : Score combinant rentabilité et fiabilité (nombre de ventes)
-
+## 🔬 Méthodologie
+### Notebook 1 : Préparation des données
+- Chargement des fichiers DVF par département
+- Nettoyage et filtrage des données aberrantes
+- Calcul du prix au m² pour chaque transaction
+- Agrégation par commune (code INSEE)
+### Notebook 2 : Exploration et analyses
+- Statistiques descriptives par département
+- Distribution des rentabilités
+- Évolution temporelle des ventes
+- Visualisations graphiques
+### Notebook 3 : Application investisseur
+- Calcul du score d'intérêt (rentabilité × fiabilité)
+- Top 20 des communes recommandées
+- Cartographie interactive des opportunités
 ---
-
-## 🗺️ Couverture Géographique
-
-### Nouvelle-Aquitaine (12 départements)
-16, 17, 19, 23, 24, 33, 40, 47, 64, 79, 86, 87
-
-### Occitanie (13 départements)  
-09, 11, 12, 30, 31, 32, 34, 46, 48, 65, 66, 81, 82
-
+## 📈 Résultats et analyses
+### 🔥 Top 10 communes par rentabilité brute moyenne
+Les communes avec les meilleures rentabilités brutes identifiées :
+| Rang | Commune | Département | Rentabilité (%) | Prix m² (€) | Loyer m² (€) |
+|------|---------|-------------|-----------------|-------------|--------------|
+| 1 | Consac | 17 | 19.66% | 1 063 € | 9.26 € |
+| 2 | Ansost | 65 | 18.25% | 548 € | 8.33 € |
+| 3 | Sabarros | 65 | 18.05% | 771 € | 7.59 € |
+| 4 | Galinagues | 11 | 17.60% | 1 376 € | 9.30 € |
+| 5 | Pradines | 19 | 17.32% | 592 € | 7.49 € |
+![Top 10 et Flop 10 rentabilité](screenshots/top_flop_rentabilite.png)
+*Top 10 et Flop 10 des communes par rentabilité brute moyenne*
 ---
-
-## ⚠️ Notes Importantes
-
-1. **Filtrage des données** : Seules les transactions MAISON/APPARTEMENT > 50 000€ avec surface > 20m² sont conservées
-2. **Format loyers** : Si le fichier de loyers utilise le séparateur `;` et la virgule décimale, cela sera géré automatiquement
-3. **Mémoire** : Le traitement peut nécessiter plusieurs Go de RAM pour les gros départements (33, 34, etc.)
-
+### 🏆 Top 20 communes les plus intéressantes (Score combiné)
+Le score d'intérêt combine **rentabilité** et **fiabilité** (nombre de ventes) :
+![Top 20 communes intéressantes](screenshots/top20_interessantes.png)
+*Classement des 20 communes les plus attractives pour l'investissement*
+| Ville | Département | Rentabilité | Nb Ventes | Score |
+|-------|-------------|-------------|-----------|-------|
+| **Perpignan** | 66 | 9.42% | 20 325 | 93.49 |
+| **Tulle** | 19 | 12.72% | 1 390 | 92.09 |
+| **Limoges** | 87 | 8.99% | 17 593 | 87.94 |
+| **Mazamet** | 81 | 12.18% | 1 342 | 87.76 |
+| **Tarbes** | 65 | 9.76% | 6 807 | 86.13 |
 ---
-
-## 📧 Contact
-
-Pour toute question concernant ce projet d'analyse de données foncières, veuillez consulter les notebooks pour plus de détails sur la méthodologie.
+### 📊 Distribution de la rentabilité brute
+![Distribution rentabilité](screenshots/distribution_rentabilite.png)
+*Distribution des rentabilités brutes moyennes par commune*
+- **Médiane** : ~8.5% de rentabilité brute
+- **Majorité des communes** : entre 6% et 11%
+- **Queue de distribution** : quelques communes exceptionnelles > 15%
+---
+### 📉 Évolution des ventes (2019-2024)
+![Évolution ventes par département](screenshots/evolution_ventes.png)
+*Évolution du nombre de ventes par département de 2019 à 2024*
+**Observations clés :**
+- 📈 Pic de transactions en **2021** (reprise post-COVID)
+- 📉 Baisse marquée en **2023-2024** (hausse des taux d'intérêt)
+- 🔵 Département 66 (Pyrénées-Orientales) : leader en volume
+---
+### 💹 Prix vs Loyers par département
+![Prix vs loyers par département](screenshots/prix_vs_loyers.png)
+*Comparaison des prix moyens et loyers moyens au m² par département*
+- Les **départements 33 et 34** (Gironde, Hérault) affichent les prix les plus élevés
+- Les **loyers restent relativement stables** entre les départements
+- Rapport prix/loyer variable = opportunités différenciées
+---
+### 🔗 Corrélation fiabilité vs rentabilité
+![Corrélation fiabilité rentabilité](screenshots/correlation_fiabilite.png)
+*Analyse de la corrélation entre le nombre de ventes et la rentabilité*
+- Les **Top 20** (points rouges) présentent un bon équilibre
+- Compromis entre **volume de transactions** (fiabilité) et **rentabilité élevée**
+---
+### 🗺️ Carte interactive des opportunités
+![Carte interactive](screenshots/carte_interactive.png)
+*Carte interactive des communes recommandées avec détails au survol*
+La carte permet de visualiser géographiquement les opportunités :
+- 📍 **Marqueurs verts** : communes du Top 20
+- 📍 **Marqueur rouge** : commune sélectionnée
+- 💡 Info-bulle avec INSEE, rentabilité et nb de ventes
+---
+### 📋 Volume de ventes par commune
+![Volume ventes TOP communes](screenshots/volume_ventes.png)
+*Top 20 des communes par volume de transactions*
+---
+### ⚠️ Communes à faible rentabilité
+![Bottom 10 rentabilité](screenshots/bottom_rentabilite.png)
+*Communes avec les rentabilités les plus faibles - zones à éviter*
+Les communes de l'**Île de Ré** et du **Bassin d'Arcachon** présentent les rentabilités les plus faibles (< 3%), dues aux prix très élevés.
+---
+## 🚀 Installation et exécution
+### Étape 1 : Cloner le repository
+```bash
+git clone https://github.com/votre-username/Projet-analyse_donne_fonciere.git
+cd Projet-analyse_donne_fonciere
+```
+### Étape 2 : Installer les dépendances
+```bash
+pip install pandas numpy matplotlib jupyter folium
+```
+### Étape 3 : Exécuter les notebooks
+```bash
+jupyter notebook
+```
+Exécutez les notebooks dans l'ordre :
+1. `01_preparation_donnees.ipynb`
+2. `02_exploration_analyses.ipynb`
+3. `03_application_investisseur.ipynb`
+---
+## 📦 Prérequis
+| Package | Version |
+|---------|---------|
+| Python | 3.10+ |
+| pandas | 2.0+ |
+| numpy | 1.24+ |
+| matplotlib | 3.7+ |
+| folium | 0.14+ (cartes) |
+| jupyter | 1.0+ |
+---
+## 📝 Conclusion
+Ce projet fournit une **analyse complète du marché immobilier français** pour aider les investisseurs à prendre des décisions éclairées. Les communes identifiées dans le **Top 20** représentent un excellent compromis entre :
+✅ **Rentabilité attractive** (7-13% brut)  
+✅ **Volume de transactions suffisant** (données fiables)  
+✅ **Marchés dynamiques** (liquidité)
+---
+## 👤 Auteur
+Projet réalisé dans le cadre d'une analyse de données foncières.
+---
+*Dernière mise à jour : Février 2026*
