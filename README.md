@@ -131,11 +131,11 @@ La carte permet de visualiser géographiquement les opportunités :
 - 💡 Info-bulle avec INSEE, rentabilité et nb de ventes
 ---
 ### 📋 Volume de ventes par commune
-![Volume ventes TOP communes](screenshots/volume_ventes.png)
+![Volume ventes TOP communes](volume_ventes.png)
 *Top 20 des communes par volume de transactions*
 ---
 ### ⚠️ Communes à faible rentabilité
-![Bottom 10 rentabilité](screenshots/bottom_rentabilite.png)
+![Bottom 10 rentabilité](bottom_rentabilite.png)
 *Communes avec les rentabilités les plus faibles - zones à éviter*
 Les communes de l'**Île de Ré** et du **Bassin d'Arcachon** présentent les rentabilités les plus faibles (< 3%), dues aux prix très élevés.
 ---
