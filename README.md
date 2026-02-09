@@ -84,7 +84,7 @@ Les communes avec les meilleures rentabilités brutes identifiées :
 ---
 ### 🏆 Top 20 communes les plus intéressantes (Score combiné)
 Le score d'intérêt combine **rentabilité** et **fiabilité** (nombre de ventes) :
-![Top 20 communes intéressantes](screenshots/top20_interessantes.png)
+![Top 20 communes intéressantes](top20_interessantes.png)
 *Classement des 20 communes les plus attractives pour l'investissement*
 | Ville | Département | Rentabilité | Nb Ventes | Score |
 |-------|-------------|-------------|-----------|-------|
@@ -95,14 +95,14 @@ Le score d'intérêt combine **rentabilité** et **fiabilité** (nombre de vente
 | **Tarbes** | 65 | 9.76% | 6 807 | 86.13 |
 ---
 ### 📊 Distribution de la rentabilité brute
-![Distribution rentabilité](screenshots/distribution_rentabilite.png)
+![Distribution rentabilité](distribution_rentabilite.png)
 *Distribution des rentabilités brutes moyennes par commune*
 - **Médiane** : ~8.5% de rentabilité brute
 - **Majorité des communes** : entre 6% et 11%
 - **Queue de distribution** : quelques communes exceptionnelles > 15%
 ---
 ### 📉 Évolution des ventes (2019-2024)
-![Évolution ventes par département](screenshots/evolution_ventes.png)
+![Évolution ventes par département](evolution_ventes.png)
 *Évolution du nombre de ventes par département de 2019 à 2024*
 **Observations clés :**
 - 📈 Pic de transactions en **2021** (reprise post-COVID)
@@ -110,20 +110,20 @@ Le score d'intérêt combine **rentabilité** et **fiabilité** (nombre de vente
 - 🔵 Département 66 (Pyrénées-Orientales) : leader en volume
 ---
 ### 💹 Prix vs Loyers par département
-![Prix vs loyers par département](screenshots/prix_vs_loyers.png)
+![Prix vs loyers par département](prix_vs_loyers.png)
 *Comparaison des prix moyens et loyers moyens au m² par département*
 - Les **départements 33 et 34** (Gironde, Hérault) affichent les prix les plus élevés
 - Les **loyers restent relativement stables** entre les départements
 - Rapport prix/loyer variable = opportunités différenciées
 ---
 ### 🔗 Corrélation fiabilité vs rentabilité
-![Corrélation fiabilité rentabilité](screenshots/correlation_fiabilite.png)
+![Corrélation fiabilité rentabilité](correlation_fiabilite.png)
 *Analyse de la corrélation entre le nombre de ventes et la rentabilité*
 - Les **Top 20** (points rouges) présentent un bon équilibre
 - Compromis entre **volume de transactions** (fiabilité) et **rentabilité élevée**
 ---
 ### 🗺️ Carte interactive des opportunités
-![Carte interactive](screenshots/carte_interactive.png)
+![Carte interactive](carte_interactive.png)
 *Carte interactive des communes recommandées avec détails au survol*
 La carte permet de visualiser géographiquement les opportunités :
 - 📍 **Marqueurs verts** : communes du Top 20
