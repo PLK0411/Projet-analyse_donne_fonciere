@@ -79,7 +79,7 @@ Les communes avec les meilleures rentabilités brutes identifiées :
 | 3 | Sabarros | 65 | 18.05% | 771 € | 7.59 € |
 | 4 | Galinagues | 11 | 17.60% | 1 376 € | 9.30 € |
 | 5 | Pradines | 19 | 17.32% | 592 € | 7.49 € |
-![Top 10 et Flop 10 rentabilité](screenshots/top_flop_rentabilite.png)
+![Top 10 et Flop 10 rentabilité](top_flop_rentabilite.png)
 *Top 10 et Flop 10 des communes par rentabilité brute moyenne*
 ---
 ### 🏆 Top 20 communes les plus intéressantes (Score combiné)
